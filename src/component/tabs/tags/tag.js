@@ -230,7 +230,7 @@ const Tags = () => {
                         {data.tagName}
                     </td>
                     <td>
-                    {posts.filter((p,i) => p.tags[0] === data.tagName).map(k => k.companyname).length}
+                    {posts.filter((p,i) => p.tags[0] === data.tagName).map(k => k).length}
                     </td>
                     <td>
                         {new Date(data.createdAt).toLocaleDateString()}
