@@ -856,10 +856,10 @@ const TagLeads = (props) => {
                         className={classNames({ 'p-invalid': submitted && !user.lastfollowup})} 
                         />
                         {submitted && !user.lastfollowup && <small className="p-error">Last followup is required.</small>}
-                    </div>
+                    </div><br />
 
                     <div className="p-field">
-                    <label htmlFor="tags">Tags<small>optional</small></label>
+                    <label htmlFor="tags">Tags <small>(optional)</small></label>
                         <MultiSelect
                         id="tags" 
                         name="tags" 

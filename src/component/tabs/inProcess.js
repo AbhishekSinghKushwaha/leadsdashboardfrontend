@@ -43,6 +43,7 @@ const Inprocess = () => {
         estimates : "",
         projectDuration : "",
         timeZone : "",
+        tags : ""
     };
 
     const emptyFilter = {
@@ -162,7 +163,8 @@ const Inprocess = () => {
           lastfollowup : user.lastfollowup,
           estimates : user.estimates,
           projectDuration : user.projectDuration,
-          timeZone : user.timeZone
+          timeZone : user.timeZone,
+          tags : user.tags
       };
       e.preventDefault();
 
@@ -201,7 +203,8 @@ const Inprocess = () => {
           lastfollowup : response.data.lastfollowup,
           estimates : response.data.estimates,
           projectDuration : response.data.projectDuration,
-          timeZone : response.data.timeZone
+          timeZone : response.data.timeZone,
+          tags : response.data.tags
           });
       })
       .catch(e => {
@@ -246,6 +249,8 @@ const Inprocess = () => {
       const months = ["1 Month","2 Months","3 Months","4 Months","5 Months","6 Months","7 Months","8 Months","9 Months","10 Months","11 Months","12 Months"];
     
       const type = ["Outsourcing", "Contract to hire"];
+
+      const getTags = useSelector((state)=>state.tags? state.tags.map((data)=>data.tagName):null);
 
       const footer = (
         <span className="pfooter">
@@ -806,6 +811,21 @@ const Inprocess = () => {
                         className={classNames({ 'p-invalid': submitted && !user.lastfollowup})} 
                         />
                         {submitted && !user.lastfollowup && <small className="p-error">Last followup is required.</small>}
+                    </div><br />
+
+                    <div className="p-field">
+                    <label htmlFor="tags">Tags <small>(optional)</small></label>
+                        <MultiSelect
+                        id="tags" 
+                        name="tags" 
+                        value={user.tags} 
+                        options={getTags} 
+                        onChange={handleInputChange}
+                        placeholder="Select tags"
+                        display="chip" 
+                        // required 
+                        // className={classNames({ 'p-invalid': submitted && !user.tags })}
+                        />
                     </div>
             </Dialog>  
         </div>
