@@ -163,7 +163,7 @@ const Navbar = () => {
                     <Avatar className="p-mr-2" size="large" shape="circle">{google.result.name.charAt(0)}</Avatar>
                     </>
                     )}
-                    <h6 style={{marginRight: '.1em'}}>{google.result.name}</h6>
+                    {/* <h6 style={{marginRight: '.1em'}}>{google.result.name}</h6> */}
                     {/* <Button label="Logout" icon="pi pi-sign-out" className="p-button-sm p-button-secondary" onClick={logout} style={{marginRight: '.5em'}}/> */}
 
                     <div className="dropdown" style={{marginRight:".5rem"}}>
@@ -171,6 +171,8 @@ const Navbar = () => {
                             className="p-button-text p-button-secondary p-button-sm"
                             icon="pi pi-angle-down" 
                             type="button" 
+                            label={<h6>{google.result.name}</h6>}
+                            iconPos="right"
                             id="dropdownMenuButton" 
                             data-toggle="dropdown" 
                             aria-haspopup="true" 
