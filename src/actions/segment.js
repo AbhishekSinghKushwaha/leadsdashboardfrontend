@@ -1,9 +1,10 @@
+import { FETCHSEGMENT, GETSEGMENT, CREATESEGMENT, UPDATESEGMENT, DELETESEGMENT, FILTERSEGMENT } from '../constants/segmentActionTypes';
 import leadservice from '../services/leadservice';
 
 export const fetchSegment = () => async (dispatch) => {
     try {
         const {data} = await leadservice.getSegments();
-        dispatch({type: 'FETCHSEGMENT', payload:data});
+        dispatch({type: FETCHSEGMENT, payload:data});
         console.log(data);
     } catch (error) {
         console.log(error.message);
@@ -13,7 +14,7 @@ export const fetchSegment = () => async (dispatch) => {
 export const getSegment = (id) => async (dispatch) => {
     try {
         const {data} = await leadservice.retriveSegment(id);
-        dispatch({type: 'GETSEGMENT', payload:data});
+        dispatch({type: GETSEGMENT, payload:data});
         console.log(data);
     } catch (error) {
         console.log(error.message);
@@ -23,7 +24,7 @@ export const getSegment = (id) => async (dispatch) => {
 export const createSegment = (post) => async (dispatch) =>{
     try {
         const {data} = await leadservice.newSegment(post);
-        dispatch({type:'CREATESEGMENT', payload:data});
+        dispatch({type: CREATESEGMENT, payload:data});
         console.log(data);
     } catch (error) {
         console.log(error.message);
@@ -34,7 +35,7 @@ export const createSegment = (post) => async (dispatch) =>{
 export const updateSegment = (id, post) => async (dispatch) =>{
     try {
         const {data} = await leadservice.modifySegment(id, post);
-        dispatch({type:'UPDATESEGMENT', payload:data});
+        dispatch({type: UPDATESEGMENT, payload:data});
         console.log(data);        
     } catch (error) {
         console.log(error.message);
@@ -45,7 +46,7 @@ export const updateSegment = (id, post) => async (dispatch) =>{
 export const deleteSegment = (id) => async (dispatch) =>{
     try {
         await leadservice.removeSegment(id);
-        dispatch({type:'DELETESEGMENT', payload:id});        
+        dispatch({type: DELETESEGMENT, payload:id});        
     } catch (error) {
         console.log(error.message);
         
@@ -55,7 +56,7 @@ export const deleteSegment = (id) => async (dispatch) =>{
 export const filterSegment = (filter) => async (dispatch) => {
     try {
         const {data} = await leadservice.filterSegments(filter);
-        dispatch({type: 'FILTERSEGMENT', payload:data});
+        dispatch({type: FILTERSEGMENT, payload:data});
         console.log(data);
     } catch (error) {
         console.log(error.message);

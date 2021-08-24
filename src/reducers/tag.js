@@ -1,14 +1,16 @@
+import { FETCHTAG, CREATETAG, UPDATETAG, DELETETAG, FILTERTAG} from '../constants/tagActionTypes';
+
 const tags = (tags = [], action) => {
     switch (action.type) {
-        case 'FETCHTAG':
+        case FETCHTAG:
             return action.payload;
-        case 'CREATETAG':
+        case CREATETAG:
             return [...tags, action.payload];
-        case 'UPDATETAG':
+        case UPDATETAG:
             return tags.map((tag) => tag._id === action.payload ? action.payload : tag);
-        case 'DELETETAG':
+        case DELETETAG:
             return tags.filter((tag) => tag._id !== action.payload);
-        case 'FILTERTAG':
+        case FILTERTAG:
             return action.payload;
         default:
             return tags;

@@ -1,14 +1,16 @@
+import { FETCHSEGMENT, CREATESEGMENT, UPDATESEGMENT, DELETESEGMENT, FILTERSEGMENT } from '../constants/segmentActionTypes';
+
 const segments = (segments = [], action) => {
     switch (action.type) {
-        case 'FETCHSEGMENT':
+        case FETCHSEGMENT:
             return action.payload;
-        case 'CREATESEGMENT':
+        case CREATESEGMENT:
             return [...segments, action.payload];
-        case 'UPDATESEGMENT':
+        case UPDATESEGMENT:
             return segments.map((seg) => seg._id === action.payload ? action.payload : seg);
-        case 'DELETESEGMENT':
+        case DELETESEGMENT:
             return segments.filter((seg) => seg._id !== action.payload);
-        case 'FILTERSEGMENT':
+        case FILTERSEGMENT:
             return action.payload;
         default:
             return segments;
