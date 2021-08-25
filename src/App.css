@@ -703,3 +703,17 @@ body{margin-top:40px;
     padding-top: 7px;
 }
 
+.loader{
+    font-size: 2em !important;
+    padding: 10px;
+    /* position: fixed;
+    left: 0;
+    right: 0;
+    text-align: center;
+     */
+}
+
+.todoloader{
+    font-size: 1.6em !important;
+    padding: 10px;
+}

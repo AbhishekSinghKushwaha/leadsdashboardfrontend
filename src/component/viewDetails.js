@@ -52,23 +52,21 @@ const ViewDetails = props => {
     const post = useSelector((state) => user._id ? state.posts.find((p)=>p._id === user._id): null);
     const dispatch = useDispatch();
     const history = useHistory();
-    console.log(post);
+
     const option = useMemo(() => countryList().getData(), []);
     const toast = useRef(null);
-    console.log(user.status,"-Status");
+
 
     const getUser = id => {
         leadservice.get(id)
           .then(response => {
             setUser(response.data);
-            console.log(response.data);
           })
           .catch(e => {
             console.log(e);
           });
       };
-      
-      console.log(user);
+
 
       useEffect(() => {
         getUser(props.match.params.id);
@@ -88,8 +86,7 @@ const ViewDetails = props => {
       const updatedUser = (e) => {
         e.preventDefault();
         dispatch(updateUser(user._id,user))
-        .then(response => {
-          console.log(response.data);
+        .then(response => {;
           setMessage("The tutorial was updated successfully!");
         })
         .catch(e => {
@@ -102,7 +99,7 @@ const ViewDetails = props => {
       const deletedUser = () => {
         dispatch(deleteUser(user._id))
           .then(response => {
-            console.log(response.data);
+            // console.log(response.data);
             
           })
           .catch(e => {

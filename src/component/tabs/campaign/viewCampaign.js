@@ -38,14 +38,11 @@ const ViewCampaign = (props) => {
         leadservice.retriveCampaign(id)
           .then(response => {
             setCampaign(response.data);
-            console.log(response.data);
           })
           .catch(e => {
             console.log(e);
           });
       };
-
-      console.log(campaign);
 
       useEffect(() => {
         getCampaign(props.match.params.id);
@@ -54,7 +51,7 @@ const ViewCampaign = (props) => {
     const deletedCampaign = () => {
         dispatch(deleteCampaign(campaign._id))
           .then(response => {
-            console.log(response.data); 
+            // console.log(response.data); 
           })
           .catch(e => {
             console.log(e);

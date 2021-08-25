@@ -58,18 +58,18 @@ const Inprocess = () => {
     const [userDialog, setUserDialog] = useState(false);
     const [setMessage] = useState("");
     const [user, setUser] = useState(emptyUser);
-    console.log(user, "USERDISPLAY");
+   
     const [userDetails, setUserDetails] = useState([{ 
         contactname : "",
         emailaddress : "",
         phone : "",
         designation : "",
     }]);
-    console.log(userDetails, "USERDetails");
+   
     const [filter, setfilter] = useState(emptyFilter);
     const dispatch = useDispatch();
     const posts = useSelector((state)=>state.posts ? state.posts.filter((p)=>p.status === "In-Process"): null);
-    console.log(posts,"Connect Back")
+   
     const [google, setGoogle] = useState(JSON.parse(localStorage.getItem('profile')));
     const [refreshKey, setRefreshKey] = useState(0);
     const option = useMemo(() => countryList().getData(), []);
@@ -109,7 +109,6 @@ const Inprocess = () => {
           .then(response => {
             setUser(response.data);
             setUserDetails(response.data.userdetails);
-            console.log(response.data);
           })
           .catch(e => {
             console.log(e);
@@ -171,7 +170,6 @@ const Inprocess = () => {
       if(user._id){
         dispatch(updateUser(user._id, data))
         .then(response => {
-          console.log(response.data);
           setMessage("The data updated successfully!");
         })
         .catch(e => {
@@ -350,6 +348,7 @@ const Inprocess = () => {
               
             <font size="2">
                 <div className="table-responsive">
+                {!posts.length ? <i className="pi pi-spin pi-spinner loader"></i> : 
                 <table id="myTable" className="table table-striped table-hover table-sm">
                 <thead>
                     <tr>
@@ -372,6 +371,7 @@ const Inprocess = () => {
                         </>)}
                     </tr>
                 </thead>
+                
                 <tbody>
                 {items.map((data, index) => (
                 <tr key={index} style={{height:"42px"}}>
@@ -440,7 +440,7 @@ const Inprocess = () => {
                 </tr>
                 ))} 
                 </tbody>
-                </table>
+                </table>}
                 </div>
                 </font>
                 <h6><em>Showing {currentPosts.length} of {posts.length} leads details</em></h6>

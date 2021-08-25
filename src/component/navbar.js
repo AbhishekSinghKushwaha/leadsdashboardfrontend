@@ -23,7 +23,7 @@ const Navbar = () => {
     }
     
     const [aws, setAws] = useState(emptyAws);
-    console.log(aws, "AWS")
+
     const [submitted, setSubmitted] = useState(false);
     const [awsDialog, setAwsDialog] = useState(false);
     const [google, setGoogle] = useState(JSON.parse(localStorage.getItem('profile')));
@@ -45,7 +45,6 @@ const Navbar = () => {
     const openNew = () => {
 
         const gname = google?.result?.name
-        console.log(gname)
 
         // getAwsUser
         leadservice.getAwsUser(gname)
@@ -59,7 +58,6 @@ const Navbar = () => {
             else{
                 setAws(emptyAws);
             }
-            console.log(response.data.awsData[0], "GETAWSUSER");
           })
           .catch(e => {
             console.log(e);
@@ -93,7 +91,7 @@ const Navbar = () => {
         if(aws._id){
             dispatch(updateAws(aws._id, data))
             .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
             })
             .catch(e => {
             console.log(e);
@@ -156,7 +154,7 @@ const Navbar = () => {
                     <>
                     {google.result.imageUrl?(
                     <>
-                    <Avatar image={google.result.imageUrl} className="p-mr-2" size="large" shape="circle" style={{marginRight: '.3em'}}/>
+                    <Avatar image={google.result.imageUrl} className="p-mr-2" size="large" shape="circle"/>
                     </>
                     ):(
                     <>

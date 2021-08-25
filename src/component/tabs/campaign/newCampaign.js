@@ -34,17 +34,15 @@ const NewCampaign = props =>{
     };
 
     const [campaign, setCampaign] = useState(emptyCampaign);
-    console.log(campaign,"Campaign")
 
     const [submitted, setSubmitted] = useState(false);
 
     const [content, setContent] = useState('');
-    console.log(content,"content")
 
     const getsegments = useSelector((state)=>state.segments? state.segments.map((data)=>data.segmentName):null);
 
     const [selectedTimezone, setSelectedTimezone] = useState({})
-    console.log(selectedTimezone,"selectedTimezone")
+
     const [google, setGoogle] = useState(JSON.parse(localStorage.getItem('profile')));
 
     const toast = useRef(null);
@@ -81,7 +79,7 @@ const NewCampaign = props =>{
         if(campaign._id){
             dispatch(updateCampaign(campaign._id,data))
             .then(response => {
-            console.log(response.data);
+            // console.log(response.data);
             })
             .catch(e => {
             console.log(e);
@@ -128,14 +126,12 @@ const NewCampaign = props =>{
           .then(response => {
             setCampaign(response.data);
             setSelectedTimezone(response.data.timeZone);
-            console.log(response.data);
           })
           .catch(e => {
             console.log(e);
           });
       };
 
-      console.log(campaign);
 
       useEffect(() => {
         dispatch(fetchSegment()); 
@@ -146,7 +142,7 @@ const NewCampaign = props =>{
       const deletedCampaign = () => {
         dispatch(deleteCampaign(campaign._id))
           .then(response => {
-            console.log(response.data); 
+            // console.log(response.data); 
           })
           .catch(e => {
             console.log(e);

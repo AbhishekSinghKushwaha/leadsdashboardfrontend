@@ -33,7 +33,6 @@ const Todo = () => {
     const high = useSelector((state)=>state.todos ? state.todos.filter((p)=>p.priority === "High"): null);
     const medium = useSelector((state)=>state.todos ? state.todos.filter((p)=>p.priority === "Medium"): null);
     const low = useSelector((state)=>state.todos ? state.todos.filter((p)=>p.priority === "Low"): null);
-    console.log(todo,"Todos 1223");
 
     const [submitted, setSubmitted] = useState(false);
     const [userDialog, setTasksDialog] = useState(false);
@@ -58,7 +57,6 @@ const Todo = () => {
     const handleInputChange = event => {
         const { name, value } = event.target;
         setTasks({ ...tasks, [name]: value });
-        console.log(tasks,"task")
     };
 
     const saveTask = e => {
@@ -74,14 +72,12 @@ const Todo = () => {
     };
 
     const updatedTask = (id) => {
-        console.log(id, "TODO UPDATE")
         let data = {
             isCompleted : true
         }; 
-        console.log(data, "UPDATED TASK DATA")
         dispatch(updateTask(id, data))
         .then(response => {
-          console.log(response.data);
+        //   console.log(response.data);
         })
         .catch(e => {
           console.log(e);
@@ -120,7 +116,6 @@ const Todo = () => {
       const handleFilter = event => {
         const { name, value } = event.target;
         setfilter({ ...filter, [name]: value });
-        console.log(filter,"FilterTODO");
       };
 
       const filterReset = () => {
@@ -251,9 +246,12 @@ const Todo = () => {
 
             <div className="container page-todo bootstrap snippets bootdeys">
                 <div className="col-sm-12 tasks">
+                
                     <div className="task-list">
                         <h4 style={{textAlign:"center"}}>Tasks</h4>
                         <div className="priority high"><span>High Priority</span></div>
+                        {!high.length ? <i className="pi pi-spin pi-spinner todoloader"></i> : 
+                        <div>
                         {high.map((data, index) => (
                         <div className="task high" key={index}>
                             <div className="desc">
@@ -265,7 +263,7 @@ const Todo = () => {
                                 <div>Due date</div>
                                 <h6 className="datatask">{new Date(data.taskdate).toLocaleDateString()}</h6><br />
                                 {google?(<>
-                                    <div class="dropdown">
+                                    <div className="dropdown">
                                         <Button 
                                         className="p-button-text p-button-secondary p-button-sm"
                                         icon="pi pi-ellipsis-h" 
@@ -275,7 +273,7 @@ const Todo = () => {
                                         aria-haspopup="true" 
                                         aria-expanded="false"
                                         />
-                                    <div class="dropdown-menu dropdown-todo" aria-labelledby="dropdownMenuButton">
+                                    <div className="dropdown-menu dropdown-todo" aria-labelledby="dropdownMenuButton">
                                     {!data.isCompleted && <>
                                         <Button icon="pi pi-check" label="Mark as completed" className="p-button-text p-button-secondary p-button-sm" onClick={() => updatedTask(data._id)}/><br/></>}
                                         <Button icon="pi pi-trash" label="Delete Task" className="p-button-text p-button-danger p-button-sm" onClick={() => deletedTask(data._id)}/>
@@ -286,9 +284,13 @@ const Todo = () => {
                                 </>)} 
                             </div>
                             </div>
-                        ))} 
+                        ))}
+                        </div> 
+                        }
 
                         <div className="priority medium"><span>Medium Priority</span></div>
+                        {!medium.length ? <i className="pi pi-spin pi-spinner todoloader"></i> : 
+                        <div>
                         {medium.map((data, index) => (
                         <div className="task medium" key={index}>
                             <div className="desc">
@@ -300,7 +302,7 @@ const Todo = () => {
                                 <div>Due date</div>
                                 <h6 className="datatask">{new Date(data.taskdate).toLocaleDateString()}</h6><br />
                                 {google?(<>
-                                    <div class="dropdown">
+                                    <div className="dropdown">
                                         <Button 
                                         className="p-button-text p-button-secondary p-button-sm"
                                         icon="pi pi-ellipsis-h" 
@@ -310,7 +312,7 @@ const Todo = () => {
                                         aria-haspopup="true" 
                                         aria-expanded="false"
                                         />
-                                    <div class="dropdown-menu dropdown-todo" aria-labelledby="dropdownMenuButton">
+                                    <div className="dropdown-menu dropdown-todo" aria-labelledby="dropdownMenuButton">
                                     {!data.isCompleted && <>
                                         <Button icon="pi pi-check" label="Mark as completed" className="p-button-text p-button-secondary p-button-sm" onClick={() => updatedTask(data._id)}/><br/></>}
                                         <Button icon="pi pi-trash" label="Delete Task" className="p-button-text p-button-danger p-button-sm" onClick={() => deletedTask(data._id)}/>
@@ -323,8 +325,12 @@ const Todo = () => {
                             </div>
                         </div>
                         ))} 
-                        
+                        </div> 
+                        }
+
                         <div className="priority low"><span>Low Priority</span></div>
+                        {!low.length ? <i className="pi pi-spin pi-spinner todoloader"></i> : 
+                        <div>
                         {low.map((data, index) => (
                         <div className="task low" key={index}>
                             <div className="desc">
@@ -336,7 +342,7 @@ const Todo = () => {
                                 <div>Due date</div>
                                 <h6 className="datatask">{new Date(data.taskdate).toLocaleDateString()}</h6><br />
                                 {google?(<>
-                                    <div class="dropdown">
+                                    <div className="dropdown">
                                         <Button 
                                         className="p-button-text p-button-secondary p-button-sm"
                                         icon="pi pi-ellipsis-h" 
@@ -346,7 +352,7 @@ const Todo = () => {
                                         aria-haspopup="true" 
                                         aria-expanded="false"
                                         />
-                                    <div class="dropdown-menu dropdown-todo" aria-labelledby="dropdownMenuButton">
+                                    <div className="dropdown-menu dropdown-todo" aria-labelledby="dropdownMenuButton">
                                         {!data.isCompleted && <>
                                             <Button icon="pi pi-check" label="Mark as completed" className="p-button-text p-button-secondary p-button-sm" onClick={() => updatedTask(data._id)}/><br/></>}
                                         <Button icon="pi pi-trash" label="Delete Task" className="p-button-text p-button-danger p-button-sm" onClick={() => deletedTask(data._id)}/>
@@ -358,8 +364,12 @@ const Todo = () => {
                             </div>
                         </div>
                         ))}
-                        <div className="clearfix"></div>		
-                    </div>		
+                        </div> 
+                        }
+                        
+                        <div className="clearfix"></div>	
+	
+                    </div>	
                 </div>
                 </div>  
         </div>

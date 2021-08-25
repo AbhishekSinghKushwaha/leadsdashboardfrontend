@@ -81,18 +81,18 @@ const DisplayData = () => {
     const [submitted, setSubmitted] = useState(false);
     const [userDialog, setUserDialog] = useState(false);
     const [user, setUser] = useState(emptyUser);
-    console.log(user, "USERDISPLAY");
+    
     const [userDetails, setUserDetails] = useState([{ 
         contactname : "",
         emailaddress : "",
         phone : "",
         designation : "",
     }]);
-    console.log(userDetails, "USERDetails");
+   
     const [filter, setfilter] = useState(emptyFilter);
     const dispatch = useDispatch();
     const posts = useSelector((state)=>state.posts);
-    console.log(posts.length+1,"Display page length")
+    
     const [google, setGoogle] = useState(JSON.parse(localStorage.getItem('profile')));
     const [refreshKey, setRefreshKey] = useState(0);
     const option = useMemo(() => countryList().getData(), []);
@@ -132,7 +132,6 @@ const DisplayData = () => {
           .then(response => {
             setUser(response.data);
             setUserDetails(response.data.userdetails);
-            console.log(response.data);
           })
           .catch(e => {
             console.log(e);
@@ -193,7 +192,7 @@ const DisplayData = () => {
       if(user._id){
         dispatch(updateUser(user._id, data))
         .then(response => {
-          console.log(response.data);
+        //   console.log(response.data);
         })
         .catch(e => {
           console.log(e);
@@ -381,6 +380,7 @@ const DisplayData = () => {
               
             <font size="2">
                 <div className="table-responsive">
+                {!posts.length ? <i className="pi pi-spin pi-spinner loader"></i>: 
                 <table id="myTable" className="table table-striped table-hover table-sm">
                 <thead>
                     <tr>
@@ -403,6 +403,7 @@ const DisplayData = () => {
                         </>)}
                     </tr>
                 </thead>
+                
                 <tbody>
                 {items.map((data, index) => (
                 <tr key={index} style={{height:"42px"}}>
@@ -471,7 +472,7 @@ const DisplayData = () => {
                 </tr>
                 ))} 
                 </tbody>
-                </table>
+                </table>}
                 </div>
                 </font>
                 <h6><em>Showing {currentPosts.length} of {posts.length} leads details</em></h6>

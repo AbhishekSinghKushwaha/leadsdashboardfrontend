@@ -24,7 +24,6 @@ const Tags = () => {
     }
 
     const [tags, setTags] = useState(emptyTag);
-    console.log(tags,"tags");
 
     const [filter, setfilter] = useState(emptyFilter);
     const [submitted, setSubmitted] = useState(false);
@@ -32,7 +31,6 @@ const Tags = () => {
     const toast = useRef(null);
     const [google, setGoogle] = useState(JSON.parse(localStorage.getItem('profile')));
     const getTags = useSelector((state)=>state.tags);
-    console.log(getTags, "GETTAGS");
 
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(10);
@@ -42,8 +40,7 @@ const Tags = () => {
     const paginate = pageNumber => setCurrentPage(pageNumber);
     const dispatch = useDispatch();
     const [refreshKey, setRefreshKey] = useState(0);
-    const posts = useSelector((state)=>state.posts); 
-   console.log(posts,"ZZZZZZZZZZZZ")                
+    const posts = useSelector((state)=>state.posts);                
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -58,7 +55,6 @@ const Tags = () => {
     const handleFilter = event => {
         const { name, value } = event.target;
         setfilter({ ...filter, [name]: value });
-        console.log(filter,"FilterTags");
       };
 
     const filterReset = () => {
@@ -109,7 +105,6 @@ const Tags = () => {
         leadservice.retriveTag(id)
         .then(response => {
             setTags(response.data);
-            console.log(response.data);
           })
           .catch(e => {
             console.log(e);
@@ -119,7 +114,7 @@ const Tags = () => {
     const deletedTag = (id) => {
         dispatch(deleteTag(id))
             .catch(e => {
-                console.log(e);
+                // console.log(e);
             })
             toast.current.show({severity:'success', summary: 'Success', detail:'Tag deleted successfully', life: 3000});
         };
@@ -210,6 +205,7 @@ const Tags = () => {
                         />
                     </form>
                 </div>
+                {!getTags.length ? <i className="pi pi-spin pi-spinner loader"></i> :
                 <table id="myTable" className="table table-striped table-bordered table-hover table-sm">
                 <thead>
                     <tr>
@@ -223,6 +219,7 @@ const Tags = () => {
                         </>)}
                     </tr>
                 </thead>
+                
                 <tbody>
                 {currentPosts.map((data, index) => (
                 <tr key={index} style={{height:"42px"}}>
@@ -283,7 +280,7 @@ const Tags = () => {
                 </tr>
                 ))} 
                 </tbody>
-                </table>
+                </table>}
                 </div>
                     <Pagination currentPage={currentPage} postsPerPage={postsPerPage} totalPosts={getTags.length} paginate={paginate}/>
                 </font>

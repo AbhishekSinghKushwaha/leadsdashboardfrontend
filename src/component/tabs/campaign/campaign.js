@@ -20,7 +20,6 @@ const Campaign = () => {
     const [filter, setfilter] = useState(emptyFilter);
 
     const getcampaigns = useSelector((state)=>state.campaigns);
-    console.log(getcampaigns, "getcampaigns");
 
     const dispatch = useDispatch();
     const toast = useRef(null);
@@ -29,7 +28,6 @@ const Campaign = () => {
     const handleFilter = event => {
         const { name, value } = event.target;
         setfilter({ ...filter, [name]: value });
-        console.log(filter,"FilterCampaign");
       };
 
     const filterReset = () => {
@@ -115,6 +113,7 @@ const Campaign = () => {
             </div>     
             <font size="2">
                 <div className="table-responsive">
+                {!getcampaigns.length ? <i className="pi pi-spin pi-spinner loader"></i> :  
                 <table id="myTable" className="table table-striped table-hover table-sm">
                 <thead>
                     <tr>
@@ -130,6 +129,7 @@ const Campaign = () => {
                         </>):(<><div></div></>)}
                     </tr>
                 </thead>
+                
                 <tbody>
                 {getcampaigns.map((data, index) => (
                     <tr key={index} style={{height:"47px"}}>
@@ -181,7 +181,7 @@ const Campaign = () => {
                 ))}
                 
                 </tbody>
-                </table>
+                </table>}
                 </div>
                 </font>
             </Card>

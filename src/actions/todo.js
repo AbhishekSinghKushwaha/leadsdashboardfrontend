@@ -5,7 +5,6 @@ export const fetchTodos = () => async (dispatch) => {
     try {
         const {data} = await leadservice.getTodos();
         dispatch({type: FETCHTODO, payload:data});
-        console.log(data);
     } catch (error) {
         console.log(error.message);
     }
@@ -15,7 +14,6 @@ export const getTodo = (id) => async (dispatch) => {
     try {
         const {data} = await leadservice.getTask(id);
         dispatch({type: GETTODO, payload:data});
-        console.log(data);
     } catch (error) {
         console.log(error.message);
     }
@@ -25,7 +23,6 @@ export const createTask = (todo) => async (dispatch) =>{
     try {
         const {data} = await leadservice.createTodo(todo);
         dispatch({type: CREATETODO, payload:data});
-        console.log(data);
     } catch (error) {
         console.log(error.message);
         
@@ -35,8 +32,7 @@ export const createTask = (todo) => async (dispatch) =>{
 export const updateTask = (id, todo) => async (dispatch) =>{
     try {
         const {data} = await leadservice.updateTodo(id, todo);
-        dispatch({type: UPDATETODO, payload:data});
-        console.log(data);        
+        dispatch({type: UPDATETODO, payload:data});      
     } catch (error) {
         console.log(error.message);
         
@@ -57,7 +53,6 @@ export const filterTodo = (filter) => async (dispatch) => {
     try {
         const {data} = await leadservice.filterTask(filter);
         dispatch({type: FILTERTODO, payload:data});
-        console.log(data);
     } catch (error) {
         console.log(error.message);
     }

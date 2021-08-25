@@ -5,7 +5,6 @@ export const fetchSegment = () => async (dispatch) => {
     try {
         const {data} = await leadservice.getSegments();
         dispatch({type: FETCHSEGMENT, payload:data});
-        console.log(data);
     } catch (error) {
         console.log(error.message);
     }
@@ -15,7 +14,6 @@ export const getSegment = (id) => async (dispatch) => {
     try {
         const {data} = await leadservice.retriveSegment(id);
         dispatch({type: GETSEGMENT, payload:data});
-        console.log(data);
     } catch (error) {
         console.log(error.message);
     }
@@ -25,7 +23,6 @@ export const createSegment = (post) => async (dispatch) =>{
     try {
         const {data} = await leadservice.newSegment(post);
         dispatch({type: CREATESEGMENT, payload:data});
-        console.log(data);
     } catch (error) {
         console.log(error.message);
         
@@ -35,8 +32,7 @@ export const createSegment = (post) => async (dispatch) =>{
 export const updateSegment = (id, post) => async (dispatch) =>{
     try {
         const {data} = await leadservice.modifySegment(id, post);
-        dispatch({type: UPDATESEGMENT, payload:data});
-        console.log(data);        
+        dispatch({type: UPDATESEGMENT, payload:data});      
     } catch (error) {
         console.log(error.message);
         
@@ -57,7 +53,6 @@ export const filterSegment = (filter) => async (dispatch) => {
     try {
         const {data} = await leadservice.filterSegments(filter);
         dispatch({type: FILTERSEGMENT, payload:data});
-        console.log(data);
     } catch (error) {
         console.log(error.message);
     }

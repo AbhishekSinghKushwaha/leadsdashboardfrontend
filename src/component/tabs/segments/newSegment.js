@@ -25,7 +25,6 @@ const NewSegment = (props) => {
 
     const [segment, setSegment] = useState(emptySegment);
     const [submitted, setSubmitted] = useState(false);
-    console.log(segment,"segment");
     
     const [fields, setFields] = useState([{ 
         activityType : "",
@@ -47,7 +46,7 @@ const NewSegment = (props) => {
         isNotWithinStart:"",
         isNotWithinEnd:"" 
     }]);
-    console.log(fields,"fields")
+
     const [google, setGoogle] = useState(JSON.parse(localStorage.getItem('profile')));
 
     const getsegments = useSelector((state)=>state.segments? state.segments.map((data)=>data.segmentName):null);
@@ -111,7 +110,7 @@ const NewSegment = (props) => {
         if(segment._id){
             dispatch(updateSegment(segment._id,data))
             .then(response => {
-            console.log(response.data);
+            // console.log(response.data);
             })
             .catch(e => {
             console.log(e);
@@ -132,14 +131,11 @@ const NewSegment = (props) => {
           .then(response => {
             setSegment(response.data);
             setFields(response.data.segmentDetails);
-            console.log(response.data);
           })
           .catch(e => {
             console.log(e);
           });
       };
-
-      console.log(segment);
 
     const footer = (
         <div className="pfooter">

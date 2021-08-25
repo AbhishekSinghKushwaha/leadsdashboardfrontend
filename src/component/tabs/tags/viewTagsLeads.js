@@ -83,18 +83,18 @@ const TagLeads = (props) => {
     const [submitted, setSubmitted] = useState(false);
     const [userDialog, setUserDialog] = useState(false);
     const [user, setUser] = useState(emptyUser);
-    console.log(user, "USERDISPLAY");
+
     const [userDetails, setUserDetails] = useState([{ 
         contactname : "",
         emailaddress : "",
         phone : "",
         designation : "",
     }]);
-    console.log(userDetails, "USERDetails");
+
     const [filter, setfilter] = useState(emptyFilter);
     const dispatch = useDispatch();
     const posts = useSelector((state)=>state.posts);
-    console.log(posts.length+1,"Display page length")
+
     const [google, setGoogle] = useState(JSON.parse(localStorage.getItem('profile')));
     const [refreshKey, setRefreshKey] = useState(0);
     const option = useMemo(() => countryList().getData(), []);
@@ -120,7 +120,6 @@ const TagLeads = (props) => {
         leadservice.tagsLeads(tagName)
           .then(response => {
             setLeads(response.data);
-            console.log(leads, "FilteredtagsLeads");
           })
           .catch(e => {
             console.log(e);
@@ -132,9 +131,6 @@ const TagLeads = (props) => {
         dispatch(fetchAll());
       }, [props.match.params.tagName, dispatch, refreshKey]);
 
-//       useEffect(() => {
-//         dispatch(fetchAll());
-// }, [dispatch, refreshKey]);
 
     const openNew = () => {
         setUser(emptyUser);
@@ -150,7 +146,6 @@ const TagLeads = (props) => {
           .then(response => {
             setUser(response.data);
             setUserDetails(response.data.userdetails);
-            console.log(response.data);
           })
           .catch(e => {
             console.log(e);
@@ -211,7 +206,7 @@ const TagLeads = (props) => {
       if(user._id){
         dispatch(updateUser(user._id, data))
         .then(response => {
-          console.log(response.data);
+        //   console.log(response.data);
         })
         .catch(e => {
           console.log(e);

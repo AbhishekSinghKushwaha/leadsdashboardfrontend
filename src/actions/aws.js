@@ -15,7 +15,6 @@ export const getAws = (id) => async (dispatch) => {
     try {
         const {data} = await leadservice.retriveAws(id);
         dispatch({type: GETAWS, payload:data});
-        console.log(data);
     } catch (error) {
         console.log(error.message);
     }
@@ -25,7 +24,6 @@ export const createAws = (post) => async (dispatch) =>{
     try {
         const {data} = await leadservice.newAws(post);
         dispatch({type: CREATEAWS, payload:data});
-        console.log(data);
     } catch (error) {
         console.log(error.message);
         
@@ -35,8 +33,7 @@ export const createAws = (post) => async (dispatch) =>{
 export const updateAws = (id, post) => async (dispatch) =>{
     try {
         const {data} = await leadservice.modifyAws(id, post);
-        dispatch({type: UPDATEAWS, payload:data});
-        console.log(data);        
+        dispatch({type: UPDATEAWS, payload:data});;        
     } catch (error) {
         console.log(error.message);
         

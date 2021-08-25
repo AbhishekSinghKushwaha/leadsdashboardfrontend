@@ -19,7 +19,6 @@ const Segments = () => {
 
     const dispatch = useDispatch();
     const getsegments = useSelector((state)=>state.segments);
-    console.log(getsegments, "getsegments");
 
     const toast = useRef(null);
     const [google, setGoogle] = useState(JSON.parse(localStorage.getItem('profile')));
@@ -27,7 +26,6 @@ const Segments = () => {
     const handleFilter = event => {
         const { name, value } = event.target;
         setfilter({ ...filter, [name]: value });
-        console.log(filter,"FilterSegment");
       };
 
     const filterReset = () => {
@@ -99,6 +97,7 @@ const Segments = () => {
                         
             <font size="2">
                 <div className="table-responsive">
+                {!getsegments.length ? <i className="pi pi-spin pi-spinner loader"></i> :
                 <table id="myTable" className="table table-striped table-hover table-sm">
                 <thead>
                     <tr>
@@ -109,6 +108,7 @@ const Segments = () => {
                         <th>Action</th>
                     </tr>
                 </thead>
+                
                 <tbody>
                 {getsegments.map((data, index) => (
                     <tr key={index} style={{height:"47px"}}>
@@ -158,7 +158,7 @@ const Segments = () => {
                     </tr>
                     ))}                
                 </tbody>
-                </table>
+                </table>}
                 </div>
                 </font>
             </Card>
