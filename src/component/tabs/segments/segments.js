@@ -134,22 +134,22 @@ const Segments = () => {
                                 <Button 
                                 label="View leads" 
                                 icon="pi pi-users" 
-                                className="p-button-text p-button-secondary p-button-sm" 
+                                className="p-button-text p-button-secondary p-button-sm btn-block dropbutton" 
                                 /></Link>
-                                <br/>
+                                
                                 <Link 
                                 to={"/segment/" + data._id} 
                                 style={{textDecoration:"none"}}>
                                 <Button 
                                 label="Edit segment" 
                                 icon="pi pi-pencil" 
-                                className="p-button-text p-button-secondary p-button-sm" 
+                                className="p-button-text p-button-secondary p-button-sm btn-block dropbutton" 
                                 /></Link>
-                                <br/>
+                                
                                 <Button 
                                 label="Delete segment" 
                                 icon="pi pi-trash" 
-                                className="p-button-text p-button-danger p-button-sm" 
+                                className="p-button-text p-button-danger p-button-sm btn-block dropbutton" 
                                 onClick={() => deletedSegment(data._id)}
                                 />
                             </div>

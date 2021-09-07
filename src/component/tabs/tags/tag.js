@@ -252,21 +252,21 @@ const Tags = () => {
                                 <Button 
                                 label="View leads" 
                                 icon="pi pi-users" 
-                                className="p-button-text p-button-secondary p-button-sm" 
+                                className="p-button-text p-button-secondary p-button-sm btn-block dropbutton" 
                                 /></Link>
-                                <br />
+                               
                                 {/* <Button label="Import Leads" icon="pi pi-arrow-circle-up" className="p-button-text p-button-secondary p-button-sm"  /><br/> */}
                                 <Button 
                                 label="Edit Tag" 
                                 icon="pi pi-pencil" 
-                                className="p-button-text p-button-secondary p-button-sm" 
+                                className="p-button-text p-button-secondary p-button-sm btn-block dropbutton" 
                                 onClick={() => editTag(data._id)}
                                 />
-                                <br/>
+                                
                                 <Button 
                                 label="Delete Tag" 
                                 icon="pi pi-trash" 
-                                className="p-button-text p-button-danger p-button-sm" 
+                                className="p-button-text p-button-danger p-button-sm btn-block dropbutton" 
                                 onClick={() => deletedTag(data._id)}
                                 />
                             </div>

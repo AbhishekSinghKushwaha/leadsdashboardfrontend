@@ -275,8 +275,8 @@ const Todo = () => {
                                         />
                                     <div className="dropdown-menu dropdown-todo" aria-labelledby="dropdownMenuButton">
                                     {!data.isCompleted && <>
-                                        <Button icon="pi pi-check" label="Mark as completed" className="p-button-text p-button-secondary p-button-sm" onClick={() => updatedTask(data._id)}/><br/></>}
-                                        <Button icon="pi pi-trash" label="Delete Task" className="p-button-text p-button-danger p-button-sm" onClick={() => deletedTask(data._id)}/>
+                                        <Button icon="pi pi-check" label="Mark as completed" className="p-button-text p-button-secondary p-button-sm btn-block dropbutton" onClick={() => updatedTask(data._id)}/></>}
+                                        <Button icon="pi pi-trash" label="Delete Task" className="p-button-text p-button-danger p-button-sm btn-block dropbutton" onClick={() => deletedTask(data._id)}/>
                                     </div>
                                     </div>
                                 </>):
@@ -314,8 +314,8 @@ const Todo = () => {
                                         />
                                     <div className="dropdown-menu dropdown-todo" aria-labelledby="dropdownMenuButton">
                                     {!data.isCompleted && <>
-                                        <Button icon="pi pi-check" label="Mark as completed" className="p-button-text p-button-secondary p-button-sm" onClick={() => updatedTask(data._id)}/><br/></>}
-                                        <Button icon="pi pi-trash" label="Delete Task" className="p-button-text p-button-danger p-button-sm" onClick={() => deletedTask(data._id)}/>
+                                        <Button icon="pi pi-check" label="Mark as completed" className="p-button-text p-button-secondary p-button-sm btn-block dropbutton" onClick={() => updatedTask(data._id)}/></>}
+                                        <Button icon="pi pi-trash" label="Delete Task" className="p-button-text p-button-danger p-button-sm btn-block dropbutton" onClick={() => deletedTask(data._id)}/>
                                     </div>
                                     </div>
                                                                     
@@ -354,8 +354,8 @@ const Todo = () => {
                                         />
                                     <div className="dropdown-menu dropdown-todo" aria-labelledby="dropdownMenuButton">
                                         {!data.isCompleted && <>
-                                            <Button icon="pi pi-check" label="Mark as completed" className="p-button-text p-button-secondary p-button-sm" onClick={() => updatedTask(data._id)}/><br/></>}
-                                        <Button icon="pi pi-trash" label="Delete Task" className="p-button-text p-button-danger p-button-sm" onClick={() => deletedTask(data._id)}/>
+                                            <Button icon="pi pi-check" label="Mark as completed" className="p-button-text p-button-secondary p-button-sm btn-block dropbutton" onClick={() => updatedTask(data._id)}/></>}
+                                        <Button icon="pi pi-trash" label="Delete Task" className="p-button-text p-button-danger p-button-sm btn-block dropbutton" onClick={() => deletedTask(data._id)}/>
                                     </div>
                                     </div>
                                 </>):

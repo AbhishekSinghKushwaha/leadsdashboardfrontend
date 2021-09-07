@@ -31,9 +31,9 @@ const NewSegment = (props) => {
         campaignValue: "",
         campaignMatch : "",
         campaigns: "",
-        ecommerceValue: "",
-        ecommerceMatch: "",
-        ecommerce: "",
+        // ecommerceValue: "",
+        // ecommerceMatch: "",
+        // ecommerce: "",
         tagsMatch: "",
         tags: "",
         segmentsMatch: "",
@@ -73,9 +73,9 @@ const NewSegment = (props) => {
             campaignValue: "",
             campaignMatch : "",
             campaigns: "",
-            ecommerceValue: "",
-            ecommerceMatch: "",
-            ecommerce: "",
+            // ecommerceValue: "",
+            // ecommerceMatch: "",
+            // ecommerce: "",
             tagsMatch: "",
             tags: "",
             segmentsMatch: "",
@@ -151,11 +151,11 @@ const NewSegment = (props) => {
     const getTags = useSelector((state)=>state.tags? state.tags.map((data)=>data.tagName):null);
 
     const subscribers = ["All", "Any"];
-    const activitytype = ["Campaign activity", "Date added", "E commerce activity", "Tags", "Segments"];
+    const activitytype = ["Campaign activity", "Date added", "Tags", "Segments"];
     const campaignValue = ["Opened", "Did not open", "Clicked", "Did not click", "Was delivered", "Was failed to deliver", "Was not sent"];
     const campaignMatch = ["All of the selected campaigns", "Any of the selected campaigns"];
-    const ecommerceValue = ["Purchased", "Not purchased"];
-    const ecommerceMatch = ["All of the selected products", "Any of the selected products"];
+    // const ecommerceValue = ["Purchased", "Not purchased"];
+    // const ecommerceMatch = ["All of the selected products", "Any of the selected products"];
     const tagsMatch = ["All of the selected tags", "Any of the selected tags", "None of the selected tags"];
     const segmentsMatch = ["All of the selected segments", "Any of the selected segments"];
     const dateValue = ["Is after", "Is before", "Is within", "Is not within"];
@@ -287,7 +287,7 @@ const NewSegment = (props) => {
                         </div>
                         }
 
-                        {field.activityType === 'E commerce activity' && 
+                        {/* {field.activityType === 'E commerce activity' && 
                         <div>
                             <div className="p-field activity-dropdown">
                                 <Dropdown 
@@ -334,7 +334,7 @@ const NewSegment = (props) => {
                                 {submitted && !field.ecommerce && <small className="p-error">Ecommerce is required.</small>}
                             </div>
                         </div>
-                        }
+                        } */}
 
                         {field.activityType === 'Tags' && 
                         <div>

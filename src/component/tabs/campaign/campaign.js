@@ -157,20 +157,20 @@ const Campaign = () => {
                                 <Button 
                                 label="View Campaign" 
                                 icon="pi pi-info-circle" 
-                                className="p-button-text p-button-secondary p-button-sm" 
+                                className="p-button-text p-button-secondary p-button-sm btn-block dropbutton" 
                                 /></Link>
-                                <br/>
+                                
                                 <Link to={"/campaign/" + data._id} style={{textDecoration:"none"}}>
                                 <Button 
                                 label="Edit Campaign" 
                                 icon="pi pi-pencil" 
-                                className="p-button-text p-button-secondary p-button-sm" 
+                                className="p-button-text p-button-secondary p-button-sm btn-block dropbutton" 
                                 /></Link>
-                                <br/>
+                                
                                 <Button 
                                 label="Delete Campaign" 
                                 icon="pi pi-trash" 
-                                className="p-button-text p-button-danger p-button-sm" 
+                                className="p-button-text p-button-danger p-button-sm btn-block dropbutton" 
                                 onClick={() => deletedCampaign(data._id)}
                                 />
                             </div>

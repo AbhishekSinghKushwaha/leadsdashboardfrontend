@@ -43,6 +43,8 @@ const ViewDetails = props => {
         estimates : "",
         projectDuration : "",
         timeZone : "",
+        tags : "",
+        subscribed : ""
     };
 
     const [submitted, setSubmitted] = useState(false);
@@ -145,15 +147,17 @@ const ViewDetails = props => {
                     <Button 
                     label="Edit lead" 
                     icon="pi pi-pencil" 
-                    className="p-button-text p-button-secondary p-button-sm" 
+                    className="p-button-text p-button-secondary p-button-sm btn-block dropbutton" 
                     onClick={editUser} 
                     />
-                    <Button label="Delete lead" icon="pi pi-trash" className="p-button-text p-button-danger p-button-sm" onClick={deletedUser}/>          
+                    <Button label="Delete lead" icon="pi pi-trash" className="p-button-text p-button-danger p-button-sm btn-block dropbutton" onClick={deletedUser}/>          
                 </div>
             </div> 
             </span>
             </React.Fragment>
         )
+
+    const getTags = useSelector((state)=>state.tags? state.tags.map((data)=>data.tagName):null);
 
     const tech = ["NodeJS", ".NET", "ReactJS", "AngularJS", "Php", "Python", "Java", "VueJS", "ExpressJS"];
 
@@ -187,6 +191,25 @@ const ViewDetails = props => {
                     <li><label className="userlabels">Project Duration:</label><span className="uservalues">{user.projectDuration}</span></li>
                     <li><label className="userlabels">Time Zone:</label><span className="uservalues">{user.timeZone}</span></li>
                     <li><label className="userlabels">Last Followup on:</label><span className="uservalues">{new Date(user.lastfollowup).toLocaleDateString()}</span></li>                    
+                    <li><label className="userlabels">Tags:</label><span className="uservalues">{user.tags}</span></li>                    
+                    <li><label className="userlabels">Subscribed:</label>
+                    {/* <span className="uservalues">{user.subscribed}</span>
+                    <span class={user.subscribed === "Yes" ? "badge badge-success text-uppercase" : "badge badge-danger text-uppercase"}>
+                        {user.subscribed}
+                    </span> */}
+                    {user.subscribed === "Yes" ? 
+                    <span className="uservalues">
+                        <span class="badge badge-success text-uppercase">
+                        Subscribed
+                        </span> 
+                    </span>: 
+                    <span className="uservalues">
+                        <span class="badge badge-danger text-uppercase">
+                        Not subscribed
+                        </span>
+                    </span>
+                    }
+                    </li>                    
                 </ul>
             </Card>
            
@@ -462,6 +485,55 @@ const ViewDetails = props => {
                     <div className="p-field">
                         <label htmlFor="icon">Last Followup On</label>
                         <Calendar id="icon" value={new Date(user.lastfollowup)} onChange={handleInputChange} showIcon name="lastfollowup"/>
+                    </div><br/>
+
+                    <div className="p-field">
+                    <label htmlFor="tags">Tags <small>(optional)</small></label>
+                        <MultiSelect
+                        id="tags" 
+                        name="tags" 
+                        value={user.tags} 
+                        options={getTags} 
+                        onChange={handleInputChange}
+                        placeholder="Select tags"
+                        display="chip" 
+                        // required 
+                        // className={classNames({ 'p-invalid': submitted && !user.tags })}
+                        />
+                    </div><br />
+
+                    <div className="p-field">
+                    <label>Subscribed</label>
+                    <div className="p-formgrid p-grid">
+
+                        <div className="p-field-radiobutton">
+                            <RadioButton 
+                            //className="radio-type" 
+                            inputId="radio3" 
+                            value="Yes" 
+                            onChange={handleInputChange } 
+                            checked={user.subscribed === 'Yes'}  
+                            name="subscribed"
+                            required                         
+                            className={classNames({ 'p-invalid': submitted && !user.subscribed }), "radio-type"}
+                            />
+                            <label htmlFor="radio3" className="radio-padding">Yes</label><br />
+                        </div>
+                        <div className="p-field-radiobutton">
+                            <RadioButton 
+                            className="radio-type" 
+                            inputId="radio4" 
+                            value="No" 
+                            onChange={handleInputChange} 
+                            checked={user.subscribed === 'No'}  
+                            name="subscribed"
+                            required                         
+                            className={classNames({ 'p-invalid': submitted && !user.subscribed }), "radio-type"}
+                            />
+                            <label htmlFor="radio4" className="radio-padding">No</label><br />
+                            {submitted && !user.subscribed && <small className="p-error">Subscribed is required.</small>}
+                        </div>
+                    </div>
                     </div>
             </Dialog>    
         </div>

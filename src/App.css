@@ -1,6 +1,6 @@
-html{
+/* html{
     background: rgb(240, 236, 243);
-}
+} */
 
 th {
   background-color: #607D8B;
@@ -23,6 +23,13 @@ tr:last-of-type {
 
 li {
   list-style-type: none;
+}
+
+.not-found{
+    height: 563px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .uservalues {
@@ -91,6 +98,7 @@ li {
 .p-tabview .p-tabview-panels{
   background:rgb(240, 236, 243) !important;
 }
+
 
 .radio-type{
   vertical-align: unset !important;
@@ -716,4 +724,28 @@ body{margin-top:40px;
 .todoloader{
     font-size: 1.6em !important;
     padding: 10px;
+}
+
+
+.badge-success {
+    color: #0a672b !important;
+    background-color: #a0e4c2 !important;
+}
+
+.badge {
+    padding: .4em .5em !important;
+}
+
+.badge-danger {
+    color: #dc3545 !important;
+    background-color: #ffcece !important;
+}
+
+.dropbutton {
+    align-items: flex-start !important;
+    text-align: start !important;
+}
+
+.btn-block+.btn-block {
+    margin-top: 0rem !important;
 }

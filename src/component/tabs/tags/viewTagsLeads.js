@@ -390,6 +390,7 @@ const TagLeads = (props) => {
               
             <font size="2">
                 <div className="table-responsive">
+                {!leads.length ? <i className="pi pi-spin pi-spinner loader"></i> :
                 <table id="myTable" className="table table-striped table-hover table-sm">
                 <thead>
                     <tr>
@@ -480,7 +481,7 @@ const TagLeads = (props) => {
                 </tr>
                 ))} 
                 </tbody>
-                </table>
+                </table>}
                 </div>
                 </font>
                 <h6><em>Showing {leads.length} of {leads.length} leads details</em></h6>

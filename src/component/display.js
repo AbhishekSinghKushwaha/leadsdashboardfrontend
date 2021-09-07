@@ -15,11 +15,16 @@ import { MultiSelect } from 'primereact/multiselect';
 import countryList from 'react-select-country-list';
 import { Dropdown } from 'primereact/dropdown';
 import { Calendar } from 'primereact/calendar';
-import {fetchAll, createPost, updateUser, filterData, deleteUser} from '../actions/posts';
 import { Card } from 'primereact/card';
+import {CSVLink} from 'react-csv';
+import {fetchAll, createPost, updateUser, filterData, deleteUser} from '../actions/posts';
+import {fetchCampaign} from '../actions/campaign';
+import {fetchSegment} from '../actions/segment';
+import {fetchTag} from '../actions/tag';
+import {fetchTodos} from '../actions/todo';
 import useSortableData from './sorting';
 import 'bootstrap/dist/js/bootstrap.bundle';
-import {CSVLink} from 'react-csv';
+
 
 const DisplayData = () => {
 
@@ -45,7 +50,8 @@ const DisplayData = () => {
         { label: 'Estimates', key: 'estimates' },
         { label: 'Project Duration', key: 'projectDuration' },
         { label: 'Time Zone', key: 'timeZone' },
-        { label: 'Tags', key: 'tags' }
+        { label: 'Tags', key: 'tags' },
+        { label: 'Subscribed', key: 'subscribed'}
       ];
 
     const emptyUser = {
@@ -67,7 +73,8 @@ const DisplayData = () => {
         estimates : "",
         projectDuration : "",
         timeZone : "",
-        tags : ""
+        tags : "",
+        subscribed : ""
     };
 
     const emptyFilter = {
@@ -122,6 +129,10 @@ const DisplayData = () => {
 
     useEffect(() => {
             dispatch(fetchAll());
+            dispatch(fetchCampaign());  
+            dispatch(fetchSegment()); 
+            dispatch(fetchTag());
+            dispatch(fetchTodos()); 
     }, [dispatch, refreshKey]);
 
     const editUser = (id) => {
@@ -185,7 +196,8 @@ const DisplayData = () => {
           estimates : user.estimates,
           projectDuration : user.projectDuration,
           timeZone : user.timeZone,
-          tags : user.tags
+          tags : user.tags,
+          subscribed : user.subscribed
       };
       e.preventDefault();
 
@@ -224,7 +236,8 @@ const DisplayData = () => {
           estimates : response.data.estimates,
           projectDuration : response.data.projectDuration,
           timeZone : response.data.timeZone,
-          tags : response.data.tags
+          tags : response.data.tags,
+          subscribed : response.data.subscribed
           });
       })
       .catch(e => {
@@ -443,6 +456,11 @@ const DisplayData = () => {
                     <td>
                         {new Date(data.lastfollowup).toLocaleDateString()}
                     </td> 
+                    {/* <td>
+                        <span class={data.status === "Connect Back" ? "badge badge-success text-uppercase" : "badge badge-danger text-uppercase"}>
+                        {data.status}
+                        </span>
+                    </td>  */}
                
                     
                     {google?(<>
@@ -458,9 +476,9 @@ const DisplayData = () => {
                             aria-expanded="false"
                             />
                             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <Link to={"/view/" + data._id} style={{textDecoration:"none"}}><Button label="View Lead" icon="pi pi-info-circle" className="p-button-text p-button-secondary p-button-sm"/></Link><br/>
-                                <Button label="Edit Lead" icon="pi pi-pencil" className="p-button-text p-button-secondary p-button-sm" onClick={() => editUser(data._id)}/><br/>
-                                <Button label="Delete Lead" icon="pi pi-trash" className="p-button-text p-button-danger p-button-sm" onClick={() => deletedUser(data._id)}/>
+                                <Link to={"/view/" + data._id} style={{textDecoration:"none"}}><Button label="View Lead" icon="pi pi-info-circle" className="p-button-text p-button-secondary p-button-sm btn-block dropbutton"/></Link>
+                                <Button label="Edit Lead" icon="pi pi-pencil" className="p-button-text p-button-secondary p-button-sm btn-block dropbutton" onClick={() => editUser(data._id)}/>
+                                <Button label="Delete Lead" icon="pi pi-trash" className="p-button-text p-button-danger p-button-sm btn-block dropbutton" onClick={() => deletedUser(data._id)}/>
                             </div>
                             </div>
                         </td>
@@ -858,6 +876,40 @@ const DisplayData = () => {
                         // required 
                         // className={classNames({ 'p-invalid': submitted && !user.tags })}
                         />
+                    </div><br />
+
+                    <div className="p-field">
+                    <label>Subscribed</label>
+                    <div className="p-formgrid p-grid">
+                
+                        <div className="p-field-radiobutton">
+                            <RadioButton 
+                            //className="radio-type" 
+                            inputId="radio3" 
+                            value="Yes" 
+                            onChange={handleInputChange } 
+                            checked={user.subscribed === 'Yes'}  
+                            name="subscribed"
+                            required                         
+                            className={classNames({ 'p-invalid': submitted && !user.subscribed }), "radio-type"}
+                            />
+                            <label htmlFor="radio3" className="radio-padding">Yes</label><br />
+                        </div>
+                        <div className="p-field-radiobutton">
+                            <RadioButton 
+                            className="radio-type" 
+                            inputId="radio4" 
+                            value="No" 
+                            onChange={handleInputChange} 
+                            checked={user.subscribed === 'No'}  
+                            name="subscribed"
+                            required                         
+                            className={classNames({ 'p-invalid': submitted && !user.subscribed }), "radio-type"}
+                            />
+                            <label htmlFor="radio4" className="radio-padding">No</label><br />
+                            {submitted && !user.subscribed && <small className="p-error">Subscribed is required.</small>}
+                        </div>
+                    </div>
                     </div>
             </Dialog>    
         </div>

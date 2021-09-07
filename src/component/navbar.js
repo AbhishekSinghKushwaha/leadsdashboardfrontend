@@ -177,7 +177,7 @@ const Navbar = () => {
                             aria-expanded="false"
                             />
                         <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <Button label="Logout" icon="pi pi-sign-out" className="p-button-text p-button-sm p-button-secondary" onClick={logout} style={{marginRight: '.5em'}}/>
+                            <Button label="Logout" icon="pi pi-sign-out" className="p-button-text p-button-sm p-button-secondary btn-block dropbutton" onClick={logout} style={{marginRight: '.5em'}}/>
                         </div>
                     </div>
                     
